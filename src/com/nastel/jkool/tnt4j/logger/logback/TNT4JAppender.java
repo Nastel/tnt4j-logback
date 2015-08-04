@@ -121,7 +121,7 @@ import com.nastel.jkool.tnt4j.utils.Utils;
  *
  */
 public class TNT4JAppender extends AppenderBase <ILoggingEvent> implements AppenderConstants {
-	public static final String SNAPSHOT_CATEGORY = "LogBack";
+	public static final String SNAPSHOT_CATEGORY = "Logback";
 	private static final ThreadLocal<Long> EVENT_TIMER = new ThreadLocal<Long>();
 
 	private TrackingLogger logger;
