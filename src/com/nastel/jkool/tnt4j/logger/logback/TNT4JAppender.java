@@ -128,6 +128,7 @@ public class TNT4JAppender extends AppenderBase <ILoggingEvent> implements Appen
 	private TrackingLogger logger;
 	private String sourceName;
 	private SourceType sourceType = SourceType.APPL;
+	private int maxActivitySize = 100;
 
 	private boolean metricsOnException = true;
 	private long metricsFrequency = 60, lastSnapshot = 0;
@@ -200,6 +201,12 @@ public class TNT4JAppender extends AppenderBase <ILoggingEvent> implements Appen
 				logger.tnt(tev);
 			} else {
 				activity.tnt(tev);
+			}
+			if (activity.getIdCount() >= maxActivitySize) {
+				activity.setException(ex);
+				activity.setStatus(ex != null ? ActivityStatus.EXCEPTION : ActivityStatus.END);
+				activity.stop();
+				logger.tnt(activity);
 			}
 		}
 	}
@@ -329,6 +336,24 @@ public class TNT4JAppender extends AppenderBase <ILoggingEvent> implements Appen
 	 */
 	public void setSourceType(String type) {
 		sourceType = SourceType.valueOf(type);
+	}
+
+	/**
+	 * Obtain maximum size of any activity
+	 *
+	 * @return source name string that maps to tnt4j configuration
+	 */
+	public int getMaxActivitySize() {
+		return maxActivitySize;
+	}
+
+	/**
+	 * Set maximum size of any activity
+	 *
+	 * @param size maximum size must be greater than 0
+	 */
+	public void setMaxActivitySize(int size) {
+		maxActivitySize = size;
 	}
 
 	/**
