@@ -18,6 +18,7 @@ package com.nastel.jkool.tnt4j.logger.logback;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -35,6 +36,7 @@ import com.nastel.jkool.tnt4j.core.ValueTypes;
 import com.nastel.jkool.tnt4j.logger.AppenderConstants;
 import com.nastel.jkool.tnt4j.logger.AppenderTools;
 import com.nastel.jkool.tnt4j.source.SourceType;
+import com.nastel.jkool.tnt4j.tracker.TimeTracker;
 import com.nastel.jkool.tnt4j.tracker.TrackingActivity;
 import com.nastel.jkool.tnt4j.tracker.TrackingEvent;
 import com.nastel.jkool.tnt4j.utils.Utils;
@@ -123,7 +125,6 @@ import com.nastel.jkool.tnt4j.utils.Utils;
  */
 public class TNT4JAppender extends AppenderBase <ILoggingEvent> implements AppenderConstants {
 	public static final String SNAPSHOT_CATEGORY = "Logback";
-	private static final ThreadLocal<Long> EVENT_TIMER = new ThreadLocal<Long>();
 
 	private TrackingLogger logger;
 	private String sourceName;
@@ -229,7 +230,7 @@ public class TNT4JAppender extends AppenderBase <ILoggingEvent> implements Appen
 			String eventMsg,
 			Throwable ex) {
 		int rcode = 0;
-		long elapsedTimeUsec = getElapsedNanosSinceLastEvent()/1000;
+		long elapsedTimeUsec = getUsecsSinceLastEvent();
 		long evTime = jev.getTimeStamp()*1000; // convert to usec
 		long startTime = 0, endTime = 0;
 		Snapshot snapshot = null;
@@ -394,17 +395,12 @@ public class TNT4JAppender extends AppenderBase <ILoggingEvent> implements Appen
 	}
 
 	/**
-	 * Obtain elapsed nanoseconds since last logback event
+	 * Obtain elapsed nanoseconds since last event
 	 *
-	 * @return elapsed nanoseconds since last logback even
+	 * @return elapsed nanoseconds since last event
 	 */
-	protected long getElapsedNanosSinceLastEvent() {
-		Long last = EVENT_TIMER.get();
-		long now = System.nanoTime(), elapsedNanos = 0;
-
-		elapsedNanos = last != null? now - last.longValue(): elapsedNanos;
-		EVENT_TIMER.set(now);
-		return elapsedNanos;
+	protected long getUsecsSinceLastEvent() {
+		return TimeUnit.NANOSECONDS.toMicros(TimeTracker.hitAndGet());
 	}
 
 	/**
