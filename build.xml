@@ -22,7 +22,7 @@
     <tstamp/>
     <mkdir dir="${classes}"/>
     <mkdir dir="${project-build}/lib"/>
-	<copy todir="${project-build}/lib">
+	<copy todir="${project-build}/lib" failonerror="false">
       <fileset dir="${lib}">
         <include name="commons-configuration-*.jar"/>
         <include name="commons-lang*-*.jar"/>
@@ -34,6 +34,9 @@
         <include name="logback-*.jar"/>
         <include name="slf4j-*.jar"/>
       </fileset>
+      <fileset dir="${project-build}/../tnt4j">
+        <include name="tnt4j-api.jar"/>
+      </fileset>
     </copy>
   </target>
 
@@ -42,7 +45,7 @@
     <javac destdir="${classes}" debug="true" debuglevel="${debuglevel}" source="${source}" target="${target}">
       <src path="${src}"/>
       <classpath>
-        <fileset dir="${lib}"/>
+        <fileset dir="${project-build}/lib"/>
       </classpath>
     </javac>
   </target>
@@ -87,7 +90,7 @@
              nodeprecated="false">
       <!-- <arg value="-Xdoclint:none"/>		enable for Java 8 -->
       <classpath>
-        <fileset dir="${lib}">
+        <fileset dir="${project-build}/lib">
           <include name="**/*.jar"/>
         </fileset>
       </classpath>
