@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.nastel.jkool.tnt4j.logger.logback;
+package com.jkoolcloud.tnt4j.logger.logback;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,20 +26,20 @@ import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.AppenderBase;
 import ch.qos.logback.core.status.ErrorStatus;
 
-import com.nastel.jkool.tnt4j.TrackingLogger;
-import com.nastel.jkool.tnt4j.core.ActivityStatus;
-import com.nastel.jkool.tnt4j.core.OpCompCode;
-import com.nastel.jkool.tnt4j.core.OpLevel;
-import com.nastel.jkool.tnt4j.core.OpType;
-import com.nastel.jkool.tnt4j.core.Snapshot;
-import com.nastel.jkool.tnt4j.core.ValueTypes;
-import com.nastel.jkool.tnt4j.logger.AppenderConstants;
-import com.nastel.jkool.tnt4j.logger.AppenderTools;
-import com.nastel.jkool.tnt4j.source.SourceType;
-import com.nastel.jkool.tnt4j.tracker.TimeTracker;
-import com.nastel.jkool.tnt4j.tracker.TrackingActivity;
-import com.nastel.jkool.tnt4j.tracker.TrackingEvent;
-import com.nastel.jkool.tnt4j.utils.Utils;
+import com.jkoolcloud.tnt4j.TrackingLogger;
+import com.jkoolcloud.tnt4j.core.ActivityStatus;
+import com.jkoolcloud.tnt4j.core.OpCompCode;
+import com.jkoolcloud.tnt4j.core.OpLevel;
+import com.jkoolcloud.tnt4j.core.OpType;
+import com.jkoolcloud.tnt4j.core.Snapshot;
+import com.jkoolcloud.tnt4j.core.ValueTypes;
+import com.jkoolcloud.tnt4j.logger.AppenderConstants;
+import com.jkoolcloud.tnt4j.logger.AppenderTools;
+import com.jkoolcloud.tnt4j.source.SourceType;
+import com.jkoolcloud.tnt4j.tracker.TimeTracker;
+import com.jkoolcloud.tnt4j.tracker.TrackingActivity;
+import com.jkoolcloud.tnt4j.tracker.TrackingEvent;
+import com.jkoolcloud.tnt4j.utils.Utils;
 
 /**
  * <p>Logback appender for sending logback events to TNT4j logging framework.</p>
