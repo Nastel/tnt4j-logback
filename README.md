@@ -2,7 +2,7 @@
 Logback  Appender for TNT4J
 
 ### Logback Appender
-All Logback messages can be routed to TNt4J event sinks via `com.nastel.jkool.tnt4j.logger.logback.TNT4JAppender`, 
+All Logback messages can be routed to TNt4J event sinks via `com.jkoolcloud.tnt4j.logger.logback.TNT4JAppender`, 
 which allows developers to send event messages to TNT4J.
 
 Developers may also enrich event messages and pass context to TNT4J using hash tag enrichment scheme.
@@ -27,7 +27,7 @@ User defined fields can be reported using `#[data-type][:value-type]/your-metric
 	%n/ -- number
 	%s/ -- string
 ```
-All `value-type` qualifiers are defined in `com.nastel.jkool.tnt4j.core.ValueTypes`. Examples:
+All `value-type` qualifiers are defined in `com.jkoolcloud.tnt4j.core.ValueTypes`. Examples:
 ```
 	currency 	-- generic currency
 	flag 		-- boolean flag
@@ -46,7 +46,7 @@ activity name set by `#beg`, `#end`, `#opn` tags.
 
 Below are Logback appender configuration attributes with defaults:
 ```
-appender.class=com.nastel.jkool.tnt4j.logger.logback.TNT4JAppender
+appender.class=com.jkoolcloud.tnt4j.logger.logback.TNT4JAppender
 SourceName=com.logback
 SourceType=APPL
 MetricsOnException=true
