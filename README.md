@@ -68,9 +68,12 @@ How to Build tnt4j-logback
 =========================================
 Requirements
 * JDK 1.7+
-* ANT (http://ant.apache.org/)
 
 TNT4J-LOGBACK depends on the following external packages:
 * TNT4J-API (http://nastel.github.io/TNT4J/)
-* Logback Project 1.1.3 (http://logback.qos.ch/)
+* Logback Project 1.1.3 (http://logback.qos.ch/) 
+
+Please use JCenter or Maven and these dependencies will be downloaded automatically. 
+
+Logback requires TNT4J. You will therefore need to point TNT4J to it's property file via the -Dtnt4j.config argument. This property file is located here in GitHub under the /config directory. If using JCenter or Maven, it can be found in the zip assembly along with the source code and javadoc.
 
