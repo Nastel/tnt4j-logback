@@ -55,7 +55,7 @@ MetricsFrequency=60
 
 TNT4J Command line options
 ===============================================
-<b>Command line arguments:</b>
+**Command line arguments:**
 * `-Dtnt4j.config=config/tnt4j.properties` -- TNT4J configuration used by Logback appender
 * `-Dtnt4j.dump.on.vm.shutdown=true` java property allows application state dumps generated automatically upon VM shutdown.
 * `-Dtnt4j.dump.provider.default=true` java property registers all default dump providers (memory, stack, logging stats).
