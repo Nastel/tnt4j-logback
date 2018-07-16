@@ -61,7 +61,7 @@ import ch.qos.logback.core.status.ErrorStatus;
  * <p>
  * This appender supports the following properties:
  * </p>
- * <table cellspacing=10>
+ * <table summary="" cellspacing=10>
  * <tr>
  * <td valign=top><b>metricsOnException</b></td>
  * <td valign=top>report jvm metrics on exception (true|false)</td>
@@ -76,7 +76,7 @@ import ch.qos.logback.core.status.ErrorStatus;
  * This appender by default sets the following TNT4j Activity and Event parameters based on the information in the
  * logback event, as follows:
  * </p>
- * <table cellspacing=10>
+ * <table summary="" cellspacing=10>
  * <tr>
  * <td valign=top><b>TNT4j Parameter</b></td>
  * <td valign=top><b>Logback Event field</b></td>
@@ -114,7 +114,7 @@ import ch.qos.logback.core.status.ErrorStatus;
  * <p>
  * The following '#' hash tag annotations are supported for reporting activities:
  * </p>
- * <table>
+ * <table summary="">
  * <tr>
  * <td><b>beg</b></td>
  * <td>Begin an activity (collection of related events/messages)</td>
@@ -132,7 +132,7 @@ import ch.qos.logback.core.status.ErrorStatus;
  * <p>
  * The following '#' hash tag annotations are supported for reporting events:
  * </p>
- * <table>
+ * <table summary="">
  * <tr>
  * <td><b>app</b></td>
  * <td>Application/source name</td>
@@ -203,7 +203,7 @@ import ch.qos.logback.core.status.ErrorStatus;
  * </tr>
  * <tr>
  * <td><b>%[data-type][:value-type]/user-key</b></td>
- * <td>User defined key/value pair and data-type->[s|i|l|f|n|d|b] are type specifiers (i=Integer, l=Long, d=Double,
+ * <td>User defined key/value pair and data-type-[s|i|l|f|n|d|b] are type specifiers (i=Integer, l=Long, d=Double,
  * f=Float, n=Number, s=String, b=Boolean) (e.g #%i/myfield=7634732)</td>
  * </tr>
  * </table>
