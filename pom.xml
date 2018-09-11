@@ -4,7 +4,7 @@
 
     <groupId>com.jkoolcloud.tnt4j.logger</groupId>
     <artifactId>tnt4j-logback</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
     <packaging>jar</packaging>
 
     <name>tnt4j-logback</name>
