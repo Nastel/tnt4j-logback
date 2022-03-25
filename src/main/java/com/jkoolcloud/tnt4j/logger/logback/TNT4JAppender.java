@@ -286,7 +286,7 @@ public class TNT4JAppender extends AppenderBase<ILoggingEvent> implements Append
 		Throwable ex = throwableProxy == null ? null : throwableProxy.getThrowable();
 		String eventMsg = event.getFormattedMessage();
 
-		HashMap<String, String> attrs = new HashMap<String, String>();
+		HashMap<String, String> attrs = new HashMap<>();
 		AppenderTools.parseEventMessage(attrs, eventMsg, '#');
 
 		boolean activityMessage = AppenderTools.isActivityInstruction(attrs);
