@@ -11,10 +11,10 @@ Developers may also enrich event messages and pass context to TNT4J using hashta
 messages with important metadata about each log message. This metadata is used to generate TNT4J tracking events:
 
 ```java
-logger.info("Starting a TNT4J activity #beg=Test, #app=" + Log4JTest.class.getName());
-logger.warn("First log message #app=" + Log4JTest.class.getName() + ", #msg='1 Test warning message'");
-logger.error("Second log message #app=" + Log4JTest.class.getName() + ", #msg='2 Test error message'", new Exception("test exception"));
-logger.info("Ending a TNT4J activity #end=Test, #app=" + Log4JTest.class.getName() + " #%i/order-no=" + orderNo + " #%d:currency/amount=" + amount);
+logger.info("Starting a TNT4J activity #beg=Test");
+logger.warn("First log message #app=" + LogbackTest.class.getName() + " #msg='1 Test warning message'");
+logger.error("Second log message #app=" + LogbackTest.class.getName() + " #msg='2 Test error message'", new Exception("test exception"));
+logger.info("Ending a TNT4J activity #end= #app=" + LogbackTest.class.getName());
 ```
 
 Above example groups messages between first and last into a related logical collection called `Activity`. Activity is a collection of
@@ -65,6 +65,7 @@ MetricsFrequency=60
 
 TNT4J Command line options
 ===============================================
+
 **Command line arguments:**
 
 * `-Dtnt4j.config=config/tnt4j.properties` -- TNT4J configuration used by Logback appender
@@ -73,6 +74,7 @@ TNT4J Command line options
 * `-Dtnt4j.formatter.json.newline=true` java property directs `JSONFormatter` to append new line when formatting log entries.
 
 See `<timestamp>.log` and `<vmid>.dump` file for output produced by running your applications with this appender.
+
 See `config/tnt4j.properties` for TNT4J configuration: factories, formatters, listeners, etc.
 
 How to Build tnt4j-logback
@@ -81,13 +83,13 @@ Requirements
 
 * JDK 1.8+
 
-TNT4J-LOGBACK depends on the following external packages:
+`tnt4j-logback` depends on the following external packages:
 
 * [TNT4J-API](http://nastel.github.io/TNT4J/)
-* [Logback Project 1.1.3](http://logback.qos.ch/)
+* [Logback Project](http://logback.qos.ch/)
 
 Please use JCenter or Maven and these dependencies will be downloaded automatically.
 
-Logback requires TNT4J. You will therefore need to point TNT4J to it's property file via the -Dtnt4j.config argument. This property file is
-located here in GitHub under the /config directory. If using JCenter or Maven, it can be found in the zip assembly along with the source
-code and javadoc.
+`tnt4j-logback` requires TNT4J. You will therefore need to point TNT4J to it's property file via the `-Dtnt4j.config` argument. This 
+property file is located here in GitHub under the /config directory. If using JCenter or Maven, it can be found in the zip assembly along with the 
+source code and javadoc.
