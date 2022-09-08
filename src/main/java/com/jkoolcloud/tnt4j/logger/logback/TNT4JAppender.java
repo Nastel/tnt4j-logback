@@ -38,12 +38,12 @@ import ch.qos.logback.core.status.ErrorStatus;
 
 /**
  * <p>
- * Logback appender for sending logback events to TNT4j logging framework.
+ * Logback appender for sending logback events to TNT4J logging framework.
  * </p>
  *
  * <p>
  * This appender will extract information from the logback {@code ILoggingEvent} and construct the appropriate message
- * for sending to TNT4j.
+ * for sending to TNT4J.
  * </p>
  *
  * <p>
@@ -54,7 +54,7 @@ import ch.qos.logback.core.status.ErrorStatus;
  * <li>This appender does not require a layout.</li>
  * <li>TNT4J hash tags can be passed using logback messages (using {@code #tag=value} convention) as well as
  * {@code MDC}.</li>
- * <li>All messages logged to this appender will be sent to all defined sinks as configured by tnt4j configuration.</li>
+ * <li>All messages logged to this appender will be sent to all defined sinks as configured by TNT4J configuration.</li>
  *
  * </ul>
  *
@@ -73,12 +73,12 @@ import ch.qos.logback.core.status.ErrorStatus;
  * </table>
  *
  * <p>
- * This appender by default sets the following TNT4j Activity and Event parameters based on the information in the
+ * This appender by default sets the following TNT4J Activity and Event parameters based on the information in the
  * logback event, as follows:
  * </p>
  * <table summary="" cellspacing=10>
  * <tr>
- * <td valign=top><b>TNT4j Parameter</b></td>
+ * <td valign=top><b>TNT4J Parameter</b></td>
  * <td valign=top><b>Logback Event field</b></td>
  * </tr>
  * <tr>
@@ -108,7 +108,7 @@ import ch.qos.logback.core.status.ErrorStatus;
  * </table>
  *
  * <p>
- * In addition, it will set other TNT4j Activity and Event parameters based on the local environment. These default
+ * In addition, it will set other TNT4J Activity and Event parameters based on the local environment. These default
  * parameter values can be overridden by annotating the log event messages or passing them using {@code MDC}.
  *
  * <p>
@@ -333,7 +333,7 @@ public class TNT4JAppender extends AppenderBase<ILoggingEvent> implements Append
 	 * @param attrs
 	 *            a set of name/value pairs
 	 * @param activity
-	 *            tnt4j activity associated with current message
+	 *            TNT4J activity associated with current message
 	 * @param jev
 	 *            logging event object
 	 * @param eventMsg
@@ -341,7 +341,7 @@ public class TNT4JAppender extends AppenderBase<ILoggingEvent> implements Append
 	 * @param ex
 	 *            exception associated with this event
 	 *
-	 * @return tnt4j tracking event object
+	 * @return TNT4J tracking event object
 	 */
 	private TrackingEvent processEventMessage(Map<String, String> attrs, TrackingActivity activity, ILoggingEvent jev,
 			StackTraceElement frame, String eventMsg, Throwable ex) {
@@ -416,16 +416,16 @@ public class TNT4JAppender extends AppenderBase<ILoggingEvent> implements Append
 	}
 
 	/**
-	 * Obtain source name associated with this appender. This name is used tnt4j source for loading tnt4j configuration.
+	 * Obtain source name associated with this appender. This name is used TNT4J source for loading TNT4J configuration.
 	 *
-	 * @return source name string that maps to tnt4j configuration
+	 * @return source name string that maps to TNT4J configuration
 	 */
 	public String getSourceName() {
 		return sourceName;
 	}
 
 	/**
-	 * Set source name associated with this appender. This name is used tnt4j source for loading tnt4j configuration.
+	 * Set source name associated with this appender. This name is used TNT4J source for loading TNT4J configuration.
 	 *
 	 * @param name
 	 *            source name
@@ -458,7 +458,7 @@ public class TNT4JAppender extends AppenderBase<ILoggingEvent> implements Append
 	/**
 	 * Obtain maximum size of any activity
 	 *
-	 * @return source name string that maps to tnt4j configuration
+	 * @return source name string that maps to TNT4J configuration
 	 */
 	public int getMaxActivitySize() {
 		return maxActivitySize;
