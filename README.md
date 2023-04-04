@@ -85,8 +85,8 @@ Requirements
 
 `tnt4j-logback` depends on the following external packages:
 
-* [TNT4J-API](http://nastel.github.io/TNT4J/)
-* [Logback Project](http://logback.qos.ch/)
+* [TNT4J-API](https://nastel.github.io/TNT4J/)
+* [Logback Project](https://logback.qos.ch/)
 
 Please use JCenter or Maven and these dependencies will be downloaded automatically.
 

@@ -1,11 +1,11 @@
 /*
- * Copyright 2014-2022 JKOOL, LLC.
+ * Copyright 2014-2023 JKOOL, LLC.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,9 +22,9 @@ import org.slf4j.MDC;
 import ch.qos.logback.classic.Logger;
 
 /**
- * @author slb
- * @version 1.0
- * @created 2022-09-08 09:54
+ * Simple app producing log entries having defined properties.
+ * 
+ * @version $Revision: 1 $
  */
 public class LogbackTest {
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(LogbackTest.class);
