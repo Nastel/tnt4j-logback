@@ -1,11 +1,19 @@
 # tnt4j-logback
 
-Logback Appender for TNT4J
+Logback Appender for TNT4J.
+
+-----------------------
+
+**NOTE:** `tnt4j-logback` version `0.5.0` migrated to Java 11.
+
+Latest Java 8 compliant `tnt4j-logback` version is `0.3.x`.
+
+-----------------------
 
 ### Logback Appender
 
-All Logback messages can be routed to TNT4J event sinks via `com.jkoolcloud.tnt4j.logger.logback.TNT4JAppender`, which allows developers to
-send event messages to TNT4J.
+All Logback messages can be routed to TNT4J event sinks via `com.jkoolcloud.tnt4j.logger.logback.TNT4JAppender`, which allows developers to send 
+event messages to TNT4J.
 
 Developers may also enrich event messages and pass context to TNT4J using hashtag enrichment scheme. Hashtags are used to decorate event
 messages with important metadata about each log message. This metadata is used to generate TNT4J tracking events:
@@ -81,7 +89,7 @@ How to Build tnt4j-logback
 =========================================
 Requirements
 
-* JDK 1.8+
+* JDK 11+
 
 `tnt4j-logback` depends on the following external packages:
 

@@ -20,7 +20,7 @@
 
     <groupId>com.jkoolcloud.tnt4j.logger</groupId>
     <artifactId>tnt4j-logback</artifactId>
-    <version>0.3.4</version>
+    <version>0.5.0</version>
     <packaging>jar</packaging>
 
     <name>tnt4j-logback</name>
@@ -66,16 +66,16 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.resources.encoding>UTF-8</project.resources.encoding>
         <project.organization.name>jKool, LLC</project.organization.name>
-        <project.organization.url>https://www.jkoolcloud.com/</project.organization.url>
+        <project.organization.url>https://www.meshiq.com/</project.organization.url>
         <product.vendor>${project.organization.name}</product.vendor>
 
-        <project.java.version>8</project.java.version>
-        <maven.compiler.source>${project.java.version}</maven.compiler.source>
-        <maven.compiler.target>${project.java.version}</maven.compiler.target>
-        <maven.compiler.version>${project.java.version}</maven.compiler.version>
+        <project.java.version>11</project.java.version>
+        <maven.compiler.release>${project.java.version}</maven.compiler.release>
         <maven.compiler.debuglevel>source,lines,vars</maven.compiler.debuglevel>
         <maven.compiler.verbose>false</maven.compiler.verbose>
         <maven.compiler.fork>false</maven.compiler.fork>
+
+        <jpms.module.name>com.jkoolcloud.tnt4j.logger.logback</jpms.module.name>
 
         <release.deploy.name>${project.artifactId}</release.deploy.name>
         <release.deploy.dir>build/</release.deploy.dir>
@@ -93,8 +93,8 @@
 
         <build.assemblies.attach>false</build.assemblies.attach>
 
-        <tnt4j.version>2.16.2</tnt4j.version>
-        <logback.version>1.3.14</logback.version>
+        <tnt4j.version>3.2.0</tnt4j.version>
+        <logback.version>1.5.6</logback.version>
     </properties>
 
     <dependencies>
@@ -112,7 +112,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version> <!-- 1.4.x requires java 11 -->
+            <version>${logback.version}</version>
         </dependency>
     </dependencies>
 
@@ -126,24 +126,6 @@
             </activation>
             <properties>
                 <assembly.line.endings>crlf</assembly.line.endings>
-            </properties>
-        </profile>
-        <profile>
-            <id>java9-plus-target</id>
-            <properties>
-                <project.java.version>${java.specification.version}</project.java.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>java9-plus</id>
-            <activation>
-                <jdk>[9,)</jdk>
-            </activation>
-            <properties>
-                <java.source.version>${project.java.version}</java.source.version>
-                <java.target.version>${project.java.version}</java.target.version>
-                <java.compiler.version>${project.java.version}</java.compiler.version>
-                <maven.compiler.release>${project.java.version}</maven.compiler.release>
             </properties>
         </profile>
 
@@ -197,12 +179,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
                     <verbose>${maven.compiler.verbose}</verbose>
-                    <compilerVersion>${maven.compiler.version}</compilerVersion>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <release>${maven.compiler.release}</release>
                     <debuglevel>${maven.compiler.debuglevel}</debuglevel>
                     <fork>${maven.compiler.fork}</fork>
                 </configuration>
@@ -218,7 +198,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -231,10 +211,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.6.3</version>
+                <version>3.7.0</version>
                 <configuration>
-                    <failOnError>false</failOnError>
+                    <failOnError>true</failOnError>
                     <doclint>all</doclint>
+                    <release>${maven.compiler.release}</release>
                 </configuration>
                 <executions>
                     <execution>
@@ -274,8 +255,29 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>dependency-convergence</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence/>
+                                <banDuplicatePomDependencyVersions/>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.7.1</version>
                 <executions>
                     <execution>
                         <id>deploy-assembly</id>
@@ -286,7 +288,7 @@
                         <configuration>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
-                                <descriptor>${release.deploy.dir.assembly}</descriptor>
+                                <!--<descriptor>${release.deploy.dir.assembly}</descriptor>-->
                                 <descriptor>${release.deploy.zip.assembly}</descriptor>
                                 <descriptor>${release.deploy.gz.assembly}</descriptor>
                             </descriptors>
@@ -301,7 +303,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.1</version>
                 <configuration>
                     <archive>
                         <!--<index>true</index>-->
@@ -312,8 +314,7 @@
                             <Implementation-Vendor>${product.vendor}</Implementation-Vendor>
                             <Implementation-Title>${project.name}</Implementation-Title>
                             <Implementation-Version>${project.version}-${maven.build.timestamp}</Implementation-Version>
-                            <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-                            <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+                            <Automatic-Module-Name>${jpms.module.name}</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -321,14 +322,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.4</version>
                 <configuration>
                     <gpgArguments>
                         <arg>--pinentry-mode</arg>
                         <arg>loopback</arg>
                     </gpgArguments>
                     <keyname>${gpg.keyname}</keyname>
-                    <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                    <passphraseEnvName>MAVEN_GPG_PASSPHRASE</passphraseEnvName>
+                    <bestPractices>true</bestPractices>
                 </configuration>
                 <executions>
                     <execution>
@@ -343,7 +345,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.2</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
@@ -351,7 +353,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.13</version>
+                <version>1.7.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>oss.sonatype.org</serverId>

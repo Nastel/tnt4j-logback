@@ -39,29 +39,21 @@ import ch.qos.logback.core.status.ErrorStatus;
 /**
  * <p>
  * Logback appender for sending logback events to TNT4J logging framework.
- * </p>
- *
  * <p>
  * This appender will extract information from the logback {@code ILoggingEvent} and construct the appropriate message
  * for sending to TNT4J.
- * </p>
- *
  * <p>
  * This appender has the following behavior:
- * </p>
  * <ul>
- *
  * <li>This appender does not require a layout.</li>
  * <li>TNT4J hash tags can be passed using logback messages (using {@code #tag=value} convention) as well as
  * {@code MDC}.</li>
  * <li>All messages logged to this appender will be sent to all defined sinks as configured by TNT4J configuration.</li>
- *
  * </ul>
- *
  * <p>
  * This appender supports the following properties:
- * </p>
- * <table summary="" cellspacing=10>
+ * <table>
+ * <caption>Appender supported configuration properties</caption>
  * <tr>
  * <td valign=top><b>metricsOnException</b></td>
  * <td valign=top>report jvm metrics on exception (true|false)</td>
@@ -75,8 +67,8 @@ import ch.qos.logback.core.status.ErrorStatus;
  * <p>
  * This appender by default sets the following TNT4J Activity and Event parameters based on the information in the
  * logback event, as follows:
- * </p>
- * <table summary="" cellspacing=10>
+ * <table>
+ * <caption>Appender produced TNT4J fields</caption>
  * <tr>
  * <td valign=top><b>TNT4J Parameter</b></td>
  * <td valign=top><b>Logback Event field</b></td>
@@ -110,11 +102,10 @@ import ch.qos.logback.core.status.ErrorStatus;
  * <p>
  * In addition, it will set other TNT4J Activity and Event parameters based on the local environment. These default
  * parameter values can be overridden by annotating the log event messages or passing them using {@code MDC}.
- *
  * <p>
- * The following '#' hash tag annotations are supported for reporting activities:
- * </p>
- * <table summary="">
+ * The following '#' hashtag annotations are supported for reporting activities:
+ * <table>
+ * <caption>Appender supported MDC properties for activity</caption>
  * <tr>
  * <td><b>beg</b></td>
  * <td>Begin an activity (collection of related events/messages)</td>
@@ -130,9 +121,9 @@ import ch.qos.logback.core.status.ErrorStatus;
  * </table>
  *
  * <p>
- * The following '#' hash tag annotations are supported for reporting events:
- * </p>
- * <table summary="">
+ * The following '#' hashtag annotations are supported for reporting events:
+ * <table>
+ * <caption>Appender supported MDC properties for event</caption>
  * <tr>
  * <td><b>app</b></td>
  * <td>Application/source name</td>
@@ -213,28 +204,18 @@ import ch.qos.logback.core.status.ErrorStatus;
  *
  * <p>
  * An example of annotating (TNT4J) a single log message using logback:
- * </p>
  * <p>
- * {@code logger.error("Operation Failed #app=MyApp #opn=save #rsn=" + filename + "  #rcd="
- *  + errno + " #msg='My error message'");}
- * </p>
- *
- *
+ * {@code logger.error("Operation Failed #app=MyApp #opn=save #rsn=" + filename + "  #rcd=" + errno + " #msg='My error message'");}
  * <p>
  * An example of reporting a TNT4J activity using logback (activity is a related collection of events):
- * </p>
  * <p>
  * {@code logger.info("Starting order processing #app=MyApp #beg=" + activityName);}
- * </p>
  * <p>
  * {@code logger.debug("Operation processing #app=MyApp #opn=save #rsn=" + filename);}
- * </p>
  * <p>
  * {@code logger.error("Operation Failed #app=MyApp #opn=save #rsn=" + filename + "  #rcd=" + errno);}
- * </p>
  * <p>
  * {@code logger.info("Finished order processing #app=MyApp #end=" + activityName + " #%l/order=" + orderNo + " #%d:currency/amount=" + amount);}
- * </p>
  *
  * @version $Revision: 1 $
  *
